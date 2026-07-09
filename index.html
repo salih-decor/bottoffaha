@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Premium Predictor - 1XBET</title>
+    <title>VIP Premium Predictor - SOFYAN X7</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;900&display=swap" rel="stylesheet">
     
@@ -12,11 +12,14 @@
             font-family: 'Cairo', sans-serif; 
             background: linear-gradient(135deg, #06070d 0%, #0c0f1d 100%);
         }
-        .neon-glow-green { 
-            box-shadow: 0 0 12px #10b981, 0 0 24px #10b981; 
+        .neon-glow-red { 
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.6), 0 0 30px rgba(239, 68, 68, 0.3); 
         }
         .neon-glow-cyan {
             box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+        }
+        .neon-glow-green { 
+            box-shadow: 0 0 12px #10b981, 0 0 24px #10b981; 
         }
         .grid-box { 
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
@@ -25,12 +28,42 @@
             background: rgba(6, 182, 212, 0.04); 
             border-color: rgba(6, 182, 212, 0.35); 
         }
+        /* واجهة القفل تقرأ صورة الخلفية باسم lock-bg.jpg تلقائياً */
+        .lock-screen-bg {
+            background-image: linear-gradient(rgba(12, 15, 29, 0.85), rgba(6, 7, 13, 0.95)), url('lock-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
 <body class="text-gray-100 min-h-screen flex items-center justify-center p-4 selection:bg-cyan-500/30">
 
-    <div id="login-screen" class="w-full max-w-md bg-[#0f111a] rounded-2xl p-8 border border-gray-800/80 shadow-2xl text-center neon-glow-cyan">
-        
+    <div id="lock-screen" class="w-full max-w-md bg-[#0f111a]/95 rounded-2xl p-8 border border-red-500/30 shadow-2xl text-center lock-screen-bg">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <div class="w-24 h-24 rounded-full border-4 border-red-500 neon-glow-red overflow-hidden bg-slate-800 flex items-center justify-center">
+                <img src="your-circle-avatar.png" alt="S" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="text-3xl font-black text-red-500 hidden">👑</span>
+            </div>
+        </div>
+
+        <h1 class="text-xl font-black text-white mb-2 tracking-wide" style="font-size: 20px;">اكتب USER الخاص بك</h1>
+        <p class="text-xs text-gray-400 mb-6">يرجى إدخال مفتاح الأمان للمتابعة</p>
+
+        <div class="text-right mb-6">
+            <input type="password" id="lock-password-input" placeholder="كلمة السر هنا..." 
+                   class="w-full bg-[#141724] border border-gray-700/70 rounded-xl py-3.5 px-4 text-center font-mono text-xl text-red-400 tracking-widest focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all shadow-inner">
+        </div>
+
+        <button onclick="checkLockPassword()" class="w-full bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-black py-4 rounded-xl text-lg transition-all shadow-lg flex justify-center items-center gap-2 mb-4" style="font-size: 18px;">
+            <span>دخول 🍎</span>
+        </button>
+
+        <a href="https://t.me/x_sofi_BFF" target="_blank" class="w-full bg-slate-800/80 hover:bg-slate-700 border border-gray-700/50 text-gray-300 font-bold py-2.5 rounded-xl text-sm transition-all flex justify-center items-center gap-2">
+            <span>شراء USER 🔑</span>
+        </a>
+    </div>
+
+    <div id="login-screen" class="w-full max-w-md bg-[#0f111a] rounded-2xl p-8 border border-gray-800/80 shadow-2xl text-center neon-glow-cyan hidden">
         <div class="mb-8 flex flex-col items-center justify-center gap-3">
             <div class="w-20 h-20 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg border border-cyan-400/20 overflow-hidden">
                 <img src="1xbet.png" alt="1XBET" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -88,13 +121,13 @@
         <div id="script-launcher" class="text-center py-8">
             <p class="text-sm text-gray-400 mb-5" style="font-size: 14px;">قنوات الاتصال مستقرة تماماً وجاهزة لتوليد البيانات</p>
             <button onclick="launchAppleScript()" class="w-full bg-[#151a2e] hover:bg-[#1c233e] border border-cyan-500/30 text-white font-black py-5 rounded-2xl text-lg transition-all flex items-center justify-center gap-3 shadow-md group">
-                <img src="apple-safe.png" alt="🍎" class="w-8 h-8 object-contain group-hover:scale-125 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="text-3xl hidden">🍎</span>
+                <img src="./apple-safe.png" alt="🍎" class="w-8 h-8 object-contain group-hover:scale-125 transition-transform duration-300" onerror="this.src='https://raw.githubusercontent.com/salih-decor/apple-bot/main/apple-safe.png'; this.onerror=function(){this.outerHTML='🍎'}">
                 <span style="font-size: 18px;">سـكـربـت الـتـفـاحـة</span>
             </button>
         </div>
 
         <div id="game-matrix-container" class="hidden">
+            
             <div class="space-y-2 max-h-[440px] overflow-y-auto pr-1 mb-5" id="matrix-rows"></div>
 
             <div id="analysis-loader" class="bg-[#12192c] border border-cyan-500/30 rounded-xl p-4 text-center mb-5 hidden">
@@ -111,9 +144,15 @@
                 <button onclick="analyzeNextRow()" id="analyze-btn" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black py-4 rounded-xl shadow-lg transition-all flex justify-center items-center gap-2" style="font-size: 16px;">
                     <span>🍎 تحليل المرحلة التالية</span>
                 </button>
-                <button onclick="resetGame()" class="w-full bg-slate-800/90 hover:bg-slate-700/90 text-gray-300 font-bold py-3.5 rounded-xl transition-all flex justify-center items-center gap-2" style="font-size: 14px;">
-                    <span>🔄 إعادة اللعب</span>
-                </button>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="resetGame()" class="w-full bg-slate-800/90 hover:bg-slate-700/90 text-gray-300 font-bold py-3.5 rounded-xl transition-all flex justify-center items-center gap-2" style="font-size: 14px;">
+                        <span>🔄 إعادة اللعب</span>
+                    </button>
+                    <button onclick="goBackToLauncher()" class="w-full bg-red-950/40 hover:bg-red-900/40 border border-red-500/20 text-red-400 font-bold py-3.5 rounded-xl transition-all flex justify-center items-center gap-2" style="font-size: 14px;">
+                        <span>⬅️ خروج / رجوع</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -123,10 +162,19 @@
         let currentActiveRow = 1; 
         let gameSessionId = 1; 
         
-        // ضع هنا رابط السيرفر الفعلي المرفوع على الإنترنت بدلاً من المكتوب بالأسفل إذا كنت تستخدم Ngrok أو Render
         const SERVER_URL = "http://127.0.0.1:8000"; 
 
         const multipliers = ["x1.23", "x1.54", "x1.93", "x2.41", "x4.02", "x6.71", "x11.11", "x27.97", "x69.93", "x349.68"];
+
+        function checkLockPassword() {
+            const passwordInput = document.getElementById('lock-password-input').value.trim();
+            if(passwordInput === "SOFY") {
+                document.getElementById('lock-screen').classList.add('hidden');
+                document.getElementById('login-screen').classList.remove('hidden');
+            } else {
+                alert("❌ كلمة السر غير صحيحة! يرجى إدخال كلمة سر صحيحة أو شراء مستخدم.");
+            }
+        }
 
         function connectToServer() {
             const idInput = document.getElementById('user-id-input').value.trim();
@@ -157,6 +205,12 @@
             document.getElementById('script-launcher').classList.add('hidden');
             document.getElementById('game-matrix-container').classList.remove('hidden');
             buildMatrix();
+        }
+
+        function goBackToLauncher() {
+            document.getElementById('game-matrix-container').classList.add('hidden');
+            document.getElementById('script-launcher').classList.remove('hidden');
+            currentActiveRow = 1;
         }
 
         function buildMatrix() {
@@ -237,7 +291,7 @@
             if(targetBox) {
                 targetBox.classList.remove('bg-[#131622]', 'border-gray-800/80', 'text-gray-600');
                 targetBox.classList.add('bg-cyan-950/30', 'border-cyan-500', 'text-white', 'shadow-md');
-                targetBox.innerHTML = `<img src="apple-safe.png" alt="🍎" class="w-7 h-7 object-contain" onerror="this.outerHTML='🍎'">`;
+                targetBox.innerHTML = `<img src="./apple-safe.png" alt="🍎" class="w-7 h-7 object-contain" onerror="this.src='https://raw.githubusercontent.com/salih-decor/apple-bot/main/apple-safe.png'; this.onerror=function(){this.outerHTML='🍎'}">`;
             }
         }
 
@@ -249,4 +303,3 @@
     </script>
 </body>
 </html>
-
