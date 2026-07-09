@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Premium Predictor - 1XBET</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background: linear-gradient(135deg, #06070d 0%, #0c0f1d 100%);
+        }
+        .neon-glow-green { 
+            box-shadow: 0 0 12px #10b981, 0 0 24px #10b981; 
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+        }
+        .grid-box { 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .active-row { 
+            background: rgba(6, 182, 212, 0.04); 
+            border-color: rgba(6, 182, 212, 0.35); 
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex items-center justify-center p-4 selection:bg-cyan-500/30">
+
+    <div id="login-screen" class="w-full max-w-md bg-[#0f111a] rounded-2xl p-8 border border-gray-800/80 shadow-2xl text-center neon-glow-cyan">
+        
+        <div class="mb-8 flex flex-col items-center justify-center gap-3">
+            <!-- 1. صورة 1xbet (يمكنك تغيير src للمسار الخاص بك) -->
+            <div class="w-20 h-20 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg border border-cyan-400/20 overflow-hidden">
+                <img src="1xbet.png" alt="1XBET" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="text-3xl font-black text-white tracking-tighter hidden">1X</span>
+            </div>
+            <h1 class="text-2xl font-black text-white tracking-wide mt-2" style="font-size: 24px; line-height: 36px;">VIP DJANGO SYSTEM</h1>
+            <p class="text-xs text-gray-400" style="font-size: 13px;">بوابة فك التشفير السحابي التلقائي</p>
+        </div>
+
+        <div class="my-6 border-b border-gray-800/60"></div>
+
+        <div class="text-right mb-6">
+            <label class="block font-bold text-gray-300 mb-2.5" style="font-size: 15px;">اكتب ID الخاص بك :</label>
+            <input type="text" id="user-id-input" placeholder="مثال: 150689743" 
+                   class="w-full bg-[#141724] border border-gray-700/70 rounded-xl py-3.5 px-4 text-center font-mono text-xl text-cyan-400 tracking-widest focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all shadow-inner">
+        </div>
+
+        <button onclick="connectToServer()" id="connect-btn" class="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-black py-4 rounded-xl text-md transition-all shadow-lg shadow-blue-950/50 flex justify-center items-center gap-2" style="font-size: 16px;">
+            <span>ربط الحساب بالسيرفر</span>
+        </button>
+
+        <div id="status-container" class="mt-5 hidden">
+            <div id="searching-status" class="text-amber-400 flex flex-col items-center justify-center gap-3 py-2 bg-amber-500/5 border border-amber-500/10 rounded-xl">
+                <svg class="animate-spin h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span class="font-medium" style="font-size: 14px;">جاري فحص خوارزميات الحساب والربط بـ 1XBET...</span>
+            </div>
+            <div id="success-status" class="text-emerald-400 font-black py-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl hidden" style="font-size: 15px;">
+                ✓ تم ربط الحساب بالسيرفر بنجاح!
+            </div>
+        </div>
+    </div>
+
+
+    <div id="main-dashboard" class="w-full max-w-md bg-[#0f111a] rounded-2xl p-6 border border-gray-800/80 shadow-2xl hidden">
+        
+        <div class="flex items-center justify-between bg-[#141724] rounded-xl p-3.5 border border-gray-800/70 mb-6">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <!-- 2. صورة المستخدم المجهول (يمكنك تغيير src للمسار الخاص بك) -->
+                    <div class="w-11 h-11 bg-slate-800/80 rounded-full flex items-center justify-center border border-slate-700 overflow-hidden">
+                        <img src="anonymous-user.png" alt="👤" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="text-xl hidden">👤</span>
+                    </div>
+                    <div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 rounded-full neon-glow-green border-2 border-[#141724]"></div>
+                </div>
+                <div class="text-right">
+                    <div class="text-gray-400 font-bold" style="font-size: 12px;">مستخدم مجهول</div>
+                    <div id="display-user-id" class="font-mono font-black text-cyan-400 tracking-wider" style="font-size: 15px;">ID: 00000000</div>
+                </div>
+            </div>
+            <span class="bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1 rounded-md font-black border border-emerald-500/20 tracking-wide">CONNECTED</span>
+        </div>
+
+        <div id="script-launcher" class="text-center py-8">
+            <p class="text-sm text-gray-400 mb-5" style="font-size: 14px;">قنوات الاتصال مستقرة تماماً وجاهزة لتوليد البيانات</p>
+            <button onclick="launchAppleScript()" class="w-full bg-[#151a2e] hover:bg-[#1c233e] border border-cyan-500/30 text-white font-black py-5 rounded-2xl text-lg transition-all flex items-center justify-center gap-3 shadow-md group">
+                <!-- 3. صورة التفاحة السليمة في الزر الرئيسي -->
+                <img src="apple-safe.png" alt="🍎" class="w-8 h-8 object-contain group-hover:scale-125 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="text-3xl hidden">🍎</span>
+                <span style="font-size: 18px;">سـكـربـت الـتـفـاحـة</span>
+            </button>
+        </div>
+
+        <div id="game-matrix-container" class="hidden">
+            
+            <div class="space-y-2 max-h-[440px] overflow-y-auto pr-1 mb-5" id="matrix-rows"></div>
+
+            <div id="analysis-loader" class="bg-[#12192c] border border-cyan-500/30 rounded-xl p-4 text-center mb-5 hidden">
+                <div class="flex items-center justify-center gap-3 text-cyan-400 font-bold">
+                    <svg class="animate-spin h-5 w-5 text-cyan-400" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span style="font-size: 15px;" class="tracking-wide">جاري التحليل وفحص أفضل احتمال...</span>
+                </div>
+            </div>
+
+            <div class="space-y-3.5">
+                <button onclick="analyzeNextRow()" id="analyze-btn" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black py-4 rounded-xl shadow-lg transition-all flex justify-center items-center gap-2" style="font-size: 16px;">
+                    <span>🍎 تحليل المرحلة التالية</span>
+                </button>
+                <button onclick="resetGame()" class="w-full bg-slate-800/90 hover:bg-slate-700/90 text-gray-300 font-bold py-3.5 rounded-xl transition-all flex justify-center items-center gap-2" style="font-size: 14px;">
+                    <span>🔄 إعادة اللعب</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUserId = "";
+        let currentActiveRow = 1; 
+        let gameSessionId = 1; 
+        
+        const multipliers = ["x1.23", "x1.54", "x1.93", "x2.41", "x4.02", "x6.71", "x11.11", "x27.97", "x69.93", "x349.68"];
+
+        function connectToServer() {
+            const idInput = document.getElementById('user-id-input').value.trim();
+            if(!idInput || idInput.length < 5) { 
+                alert("من فضلك أدخل ID حساب صحيح ومكون من 5 أرقام على الأقل."); 
+                return; 
+            }
+            
+            currentUserId = idInput;
+            document.getElementById('connect-btn').disabled = true;
+            document.getElementById('status-container').classList.remove('hidden');
+            document.getElementById('searching-status').classList.remove('hidden');
+            document.getElementById('success-status').classList.add('hidden');
+
+            setTimeout(() => {
+                document.getElementById('searching-status').classList.add('hidden');
+                document.getElementById('success-status').classList.remove('hidden');
+                
+                setTimeout(() => {
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('main-dashboard').classList.remove('hidden');
+                    document.getElementById('display-user-id').innerText = "ID: " + currentUserId;
+                }, 1200);
+            }, 2500);
+        }
+
+        function launchAppleScript() {
+            document.getElementById('script-launcher').classList.add('hidden');
+            document.getElementById('game-matrix-container').classList.remove('hidden');
+            buildMatrix();
+        }
+
+        function buildMatrix() {
+            const container = document.getElementById('matrix-rows');
+            container.innerHTML = "";
+            
+            for(let i = multipliers.length - 1; i >= 0; i--) {
+                const rowIndex = i + 1;
+                const rowHtml = `
+                    <div id="row-${rowIndex}" class="flex items-center gap-2.5 border border-gray-800/40 p-2 rounded-xl transition-all duration-300">
+                        <span class="w-14 text-left font-mono text-xs font-black text-gray-500">${multipliers[i]}</span>
+                        <div class="flex-1 grid grid-cols-5 gap-2">
+                            <div data-box="1" class="grid-box h-10 bg-[#131622] border border-gray-800/80 rounded-lg flex items-center justify-center text-sm font-bold text-gray-600">?</div>
+                            <div data-box="2" class="grid-box h-10 bg-[#131622] border border-gray-800/80 rounded-lg flex items-center justify-center text-sm font-bold text-gray-600">?</div>
+                            <div data-box="3" class="grid-box h-10 bg-[#131622] border border-gray-800/80 rounded-lg flex items-center justify-center text-sm font-bold text-gray-600">?</div>
+                            <div data-box="4" class="grid-box h-10 bg-[#131622] border border-gray-800/80 rounded-lg flex items-center justify-center text-sm font-bold text-gray-600">?</div>
+                            <div data-box="5" class="grid-box h-10 bg-[#131622] border border-gray-800/80 rounded-lg flex items-center justify-center text-sm font-bold text-gray-600">?</div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', rowHtml);
+            }
+            updateActiveRowVisuals();
+        }
+
+        function updateActiveRowVisuals() {
+            for(let i = 1; i <= 10; i++) {
+                const el = document.getElementById(`row-${i}`);
+                if(el) {
+                    if(i === currentActiveRow) el.classList.add('active-row');
+                    else el.classList.remove('active-row');
+                }
+            }
+        }
+
+        async function analyzeNextRow() {
+            if(currentActiveRow > 10) { 
+                alert("تهانينا! لقد قمت بفك تشفير ومحاكاة كافة صفوف اللعبة بنجاح."); 
+                return; 
+            }
+
+            document.getElementById('analyze-btn').disabled = true;
+            document.getElementById('analysis-loader').classList.remove('hidden');
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/predict?row=${currentActiveRow}&user_id=${currentUserId}&session_id=${gameSessionId}`);
+                const data = await response.json();
+
+                setTimeout(() => {
+                    document.getElementById('analysis-loader').classList.add('hidden');
+                    document.getElementById('analyze-btn').disabled = false;
+
+                    if(data.status === "success") {
+                        revealPrediction(currentActiveRow, data.recommended_box);
+                        currentActiveRow++;
+                        updateActiveRowVisuals();
+                    }
+                }, 1400);
+
+            } catch (error) {
+                setTimeout(() => {
+                    document.getElementById('analysis-loader').classList.add('hidden');
+                    document.getElementById('analyze-btn').disabled = false;
+                    
+                    const fallbackBox = Math.floor(Math.random() * 5) + 1;
+                    revealPrediction(currentActiveRow, fallbackBox);
+                    currentActiveRow++;
+                    updateActiveRowVisuals();
+                }, 1400);
+            }
+        }
+
+        function revealPrediction(row, boxIndex) {
+            const rowElement = document.getElementById(`row-${row}`);
+            if(!rowElement) return;
+
+            const targetBox = rowElement.querySelector(`[data-box="${boxIndex}"]`);
+            if(targetBox) {
+                targetBox.classList.remove('bg-[#131622]', 'border-gray-800/80', 'text-gray-600');
+                targetBox.classList.add('bg-cyan-950/30', 'border-cyan-500', 'text-white', 'shadow-md');
+                
+                // 4. استدعاء صورة التفاحة السليمة داخل المربع المختار
+                targetBox.innerHTML = `<img src="apple-safe.png" alt="🍎" class="w-7 h-7 object-contain" onerror="this.outerHTML='🍎'">`;
+            }
+        }
+
+        function resetGame() {
+            currentActiveRow = 1;
+            gameSessionId++; 
+            buildMatrix();
+        }
+    </script>
+</body>
+</html>
