@@ -32,13 +32,13 @@
     <div id="login-screen" class="w-full max-w-md bg-[#0f111a] rounded-2xl p-8 border border-gray-800/80 shadow-2xl text-center neon-glow-cyan">
         
         <div class="mb-8 flex flex-col items-center justify-center gap-3">
-            <!-- 1. صورة 1xbet (يمكنك تغيير src للمسار الخاص بك) -->
             <div class="w-20 h-20 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg border border-cyan-400/20 overflow-hidden">
                 <img src="1xbet.png" alt="1XBET" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="text-3xl font-black text-white tracking-tighter hidden">1X</span>
             </div>
-            <h1 class="text-2xl font-black text-white tracking-wide mt-2" style="font-size: 24px; line-height: 36px;">SOFYAN X7 VIP </h1>
-            <p class="text-xs text-gray-400" style="font-size: 13px;">السكربت يعمل فقط على 1XBET</pv>
+            <h1 class="text-2xl font-black text-white tracking-wide mt-2" style="font-size: 24px; line-height: 36px;">SOFYAN X7 VIP</h1>
+            <p class="text-xs text-gray-400" style="font-size: 13px;">السكربت يعمل فقط على 1XBET</p>
+        </div>
 
         <div class="my-6 border-b border-gray-800/60"></div>
 
@@ -66,13 +66,11 @@
         </div>
     </div>
 
-
     <div id="main-dashboard" class="w-full max-w-md bg-[#0f111a] rounded-2xl p-6 border border-gray-800/80 shadow-2xl hidden">
         
         <div class="flex items-center justify-between bg-[#141724] rounded-xl p-3.5 border border-gray-800/70 mb-6">
             <div class="flex items-center gap-3">
                 <div class="relative">
-                    <!-- 2. صورة المستخدم المجهول (يمكنك تغيير src للمسار الخاص بك) -->
                     <div class="w-11 h-11 bg-slate-800/80 rounded-full flex items-center justify-center border border-slate-700 overflow-hidden">
                         <img src="anonymous-user.png" alt="👤" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span class="text-xl hidden">👤</span>
@@ -90,7 +88,6 @@
         <div id="script-launcher" class="text-center py-8">
             <p class="text-sm text-gray-400 mb-5" style="font-size: 14px;">قنوات الاتصال مستقرة تماماً وجاهزة لتوليد البيانات</p>
             <button onclick="launchAppleScript()" class="w-full bg-[#151a2e] hover:bg-[#1c233e] border border-cyan-500/30 text-white font-black py-5 rounded-2xl text-lg transition-all flex items-center justify-center gap-3 shadow-md group">
-                <!-- 3. صورة التفاحة السليمة في الزر الرئيسي -->
                 <img src="apple-safe.png" alt="🍎" class="w-8 h-8 object-contain group-hover:scale-125 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span class="text-3xl hidden">🍎</span>
                 <span style="font-size: 18px;">سـكـربـت الـتـفـاحـة</span>
@@ -98,7 +95,6 @@
         </div>
 
         <div id="game-matrix-container" class="hidden">
-            
             <div class="space-y-2 max-h-[440px] overflow-y-auto pr-1 mb-5" id="matrix-rows"></div>
 
             <div id="analysis-loader" class="bg-[#12192c] border border-cyan-500/30 rounded-xl p-4 text-center mb-5 hidden">
@@ -127,6 +123,9 @@
         let currentActiveRow = 1; 
         let gameSessionId = 1; 
         
+        // ضع هنا رابط السيرفر الفعلي المرفوع على الإنترنت بدلاً من المكتوب بالأسفل إذا كنت تستخدم Ngrok أو Render
+        const SERVER_URL = "http://127.0.0.1:8000"; 
+
         const multipliers = ["x1.23", "x1.54", "x1.93", "x2.41", "x4.02", "x6.71", "x11.11", "x27.97", "x69.93", "x349.68"];
 
         function connectToServer() {
@@ -203,7 +202,7 @@
             document.getElementById('analysis-loader').classList.remove('hidden');
 
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/predict?row=${currentActiveRow}&user_id=${currentUserId}&session_id=${gameSessionId}`);
+                const response = await fetch(`${SERVER_URL}/api/predict?row=${currentActiveRow}&user_id=${currentUserId}&session_id=${gameSessionId}`);
                 const data = await response.json();
 
                 setTimeout(() => {
@@ -238,8 +237,6 @@
             if(targetBox) {
                 targetBox.classList.remove('bg-[#131622]', 'border-gray-800/80', 'text-gray-600');
                 targetBox.classList.add('bg-cyan-950/30', 'border-cyan-500', 'text-white', 'shadow-md');
-                
-                // 4. استدعاء صورة التفاحة السليمة داخل المربع المختار
                 targetBox.innerHTML = `<img src="apple-safe.png" alt="🍎" class="w-7 h-7 object-contain" onerror="this.outerHTML='🍎'">`;
             }
         }
@@ -252,3 +249,4 @@
     </script>
 </body>
 </html>
+
