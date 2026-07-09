@@ -54,9 +54,19 @@
                    class="w-full bg-[#141724] border border-gray-700/70 rounded-xl py-3.5 px-4 text-center font-mono text-xl text-red-400 tracking-widest focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all shadow-inner">
         </div>
 
-        <button onclick="checkLockPassword()" class="w-full bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-black py-4 rounded-xl text-lg transition-all shadow-lg flex justify-center items-center gap-2 mb-4" style="font-size: 18px;">
+        <button onclick="checkLockPassword()" id="lock-submit-btn" class="w-full bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-black py-4 rounded-xl text-lg transition-all shadow-lg flex justify-center items-center gap-2 mb-4" style="font-size: 18px;">
             <span>دخول 🍎</span>
         </button>
+
+        <div id="lock-loading-container" class="mt-2 mb-4 hidden">
+            <div id="lock-loading-status" class="text-red-400 flex flex-col items-center justify-center gap-3 py-3 bg-red-500/5 border border-red-500/10 rounded-xl">
+                <svg class="animate-spin h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span class="font-medium text-xs">جاري التحقق من صلاحية كود الـ USER ومطابقة قاعدة البيانات...</span>
+            </div>
+        </div>
 
         <a href="https://t.me/x_sofi_BFF" target="_blank" class="w-full bg-slate-800/80 hover:bg-slate-700 border border-gray-700/50 text-gray-300 font-bold py-2.5 rounded-xl text-sm transition-all flex justify-center items-center gap-2">
             <span>شراء USER 🔑</span>
@@ -166,14 +176,27 @@
 
         const multipliers = ["x1.23", "x1.54", "x1.93", "x2.41", "x4.02", "x6.71", "x11.11", "x27.97", "x69.93", "x349.68"];
 
+        // دالة التحقق من كلمة السر مع تأثير بحث (ريشارشي) لمدة 3 ثوانٍ
         function checkLockPassword() {
             const passwordInput = document.getElementById('lock-password-input').value.trim();
-            if(passwordInput === "SOFY") {
-                document.getElementById('lock-screen').classList.add('hidden');
-                document.getElementById('login-screen').classList.remove('hidden');
-            } else {
-                alert("❌ كلمة السر غير صحيحة! يرجى إدخال كلمة سر صحيحة أو شراء مستخدم.");
-            }
+            
+            // تفعيل حاوية التحميل وتعطيل زر الإرسال لمنع الضغط المتكرر
+            document.getElementById('lock-submit-btn').disabled = true;
+            document.getElementById('lock-loading-container').classList.remove('hidden');
+
+            // بدء مؤقت التأخير لمدة 3 ثوانٍ (3000 ملي ثانية)
+            setTimeout(() => {
+                // إعادة الزر لوضعه الطبيعي وإخفاء اللودينج بعد انتهاء الوقت
+                document.getElementById('lock-submit-btn').disabled = false;
+                document.getElementById('lock-loading-container').classList.add('hidden');
+
+                if(passwordInput === "SOFY") {
+                    document.getElementById('lock-screen').classList.add('hidden');
+                    document.getElementById('login-screen').classList.remove('hidden');
+                } else {
+                    alert("❌ كلمة السر غير صحيحة! يرجى إدخال كلمة سر صحيحة أو شراء مستخدم.");
+                }
+            }, 3000); 
         }
 
         function connectToServer() {
