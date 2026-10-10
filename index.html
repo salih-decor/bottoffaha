@@ -103,10 +103,10 @@
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <span class="font-medium" style="font-size: 14px;">جاري فحص خوارزميات الحساب والربط بـ 1XBET...</span>
+                <span class="font-medium" style="font-size: 14px;">محاكاة ربط محلية — لا يوجد اتصال حقيقي بـ 1xBet...</span>
             </div>
             <div id="success-status" class="text-emerald-400 font-black py-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl hidden" style="font-size: 15px;">
-                ✓ تم ربط الحساب بالسيرفر بنجاح!
+                ✓ تم بدء جلسة تجريبية محلية!
             </div>
         </div>
     </div>
@@ -114,7 +114,7 @@
     <!-- 3. لوحة التحكم الرئيسية والتحليل للسكربت -->
     <div id="main-dashboard" class="w-full max-w-md bg-[#0f111a] rounded-2xl p-6 border border-gray-800/80 shadow-2xl hidden">
         
-        <div class="flex items-center justify-between bg-[#141724] rounded-xl p-3.5 border border-gray-800/70 mb-6">
+        <div class="flex items-center justify-between bg-[#141724] rounded-xl p-3.5 border border-gray-800/70 mb-4">
             <div class="flex items-center gap-3">
                 <div class="relative">
                     <div class="w-11 h-11 bg-slate-800/80 rounded-full flex items-center justify-center border border-slate-700 overflow-hidden">
@@ -131,8 +131,13 @@
             <span class="bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1 rounded-md font-black border border-emerald-500/20 tracking-wide">CONNECTED</span>
         </div>
 
+        <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 mb-4 text-center">
+            <div class="text-amber-300 font-black" style="font-size: 13px;">وضع تجريبي — لا يتنبأ بنتائج 1xBet الحقيقية</div>
+            <div class="text-gray-400" style="font-size: 12px;">التوقع حتمي محلي (hash) للمقارنة فقط. سجل النتيجة الفعلية بعد ظهورها في اللعبة.</div>
+        </div>
+
         <div id="script-launcher" class="text-center py-8">
-            <p class="text-sm text-gray-400 mb-5" style="font-size: 14px;">قنوات الاتصال مستقرة تماماً وجاهزة لتوليد البيانات</p>
+            <p class="text-sm text-gray-400 mb-5" style="font-size: 14px;">وضع تجريبي: توليد محلي لأغراض الاختبار فقط — لا اتصال بـ 1xBet</p>
             <button onclick="launchAppleScript()" class="w-full bg-[#151a2e] hover:bg-[#1c233e] border border-cyan-500/30 text-white font-black py-5 rounded-2xl text-lg transition-all flex items-center justify-center gap-3 shadow-md group">
                 <img src="./apple-safe.png" alt="🍎" class="w-8 h-8 object-contain group-hover:scale-125 transition-transform duration-300" onerror="this.src='https://raw.githubusercontent.com/salih-decor/apple-bot/main/apple-safe.png'; this.onerror=function(){this.outerHTML='🍎'}">
                 <span style="font-size: 18px;">سـكـربـت الـتـفـاحـة</span>
@@ -149,13 +154,13 @@
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    <span style="font-size: 15px;" class="tracking-wide">جاري التحليل وفحص أفضل احتمال...</span>
+                    <span style="font-size: 15px;" class="tracking-wide">جاري توليد اقتراح تجريبي...</span>
                 </div>
             </div>
 
             <div class="space-y-3.5">
                 <button onclick="analyzeNextRow()" id="analyze-btn" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black py-4 rounded-xl shadow-lg transition-all flex justify-center items-center gap-2" style="font-size: 16px;">
-                    <span>🍎 تحليل المرحلة التالية</span>
+                    <span>🍎 اقتراح تجريبي للصف التالي</span>
                 </button>
                 
                 <div class="grid grid-cols-2 gap-3">
@@ -166,6 +171,64 @@
                         <span>⬅️ خروج / رجوع</span>
                     </button>
                 </div>
+            </div>
+
+            <!-- تسجيل النتيجة الفعلية بعد ظهورها -->
+            <div id="round-logger" class="mt-6 bg-[#141724] border border-gray-800/70 rounded-xl p-4 hidden">
+                <div class="font-black text-gray-200 mb-1" style="font-size: 14px;">تسجيل النتيجة الفعلية (بعد ظهورها في اللعبة)</div>
+                <div class="text-gray-400 mb-2" style="font-size: 12px;">سجل كل جولة متتالية بدون تخطي — الخاسرة قبل الرابحة. أدخل الصندوق الصحيح كما ظهر فعلاً.</div>
+                <div class="text-amber-300/90 mb-3" style="font-size: 12px;">لا تحتسب أي نتيجة تنبؤاً ناجحاً إلا إذا حفظ التوقع قبل ظهور النتيجة (يتم تلقائياً).</div>
+                <div class="grid grid-cols-3 gap-2 items-center mb-2">
+                    <div class="text-gray-300 text-sm">الصف: <span id="log-row" class="font-black text-cyan-400">-</span></div>
+                    <div class="text-gray-300 text-sm">توقع تجريبي: <span id="log-pred" class="font-black text-amber-300">-</span></div>
+                    <div class="flex gap-2">
+                        <input id="actual-input" type="number" min="1" max="5" placeholder="1-5" class="w-full bg-[#0f111a] border border-gray-700 rounded-lg py-2 px-2 text-center text-white">
+                        <button onclick="saveActual()" class="bg-cyan-700 hover:bg-cyan-600 text-white font-bold px-3 rounded-lg text-sm">حفظ</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <input id="nb-input" type="number" min="2" max="10" placeholder="مربعات؟" title="عدد المربعات المرصود (اتركه فارغاً إذا مجهول)" class="bg-[#0f111a] border border-gray-700 rounded-lg py-2 px-2 text-center text-white text-xs">
+                    <input id="ns-input" type="number" min="0" max="10" placeholder="آمنة؟" title="عدد التفاحات الآمنة المرصودة (فارغ = unknown)" class="bg-[#0f111a] border border-gray-700 rounded-lg py-2 px-2 text-center text-white text-xs">
+                    <input id="level-input" type="text" placeholder="مستوى؟" title="مستوى اللعبة إذا معلوم، وإلا اتركه فارغاً" class="bg-[#0f111a] border border-gray-700 rounded-lg py-2 px-2 text-center text-white text-xs">
+                </div>
+                <div id="log-msg" class="mt-2 text-xs text-gray-400"></div>
+            </div>
+
+            <!-- مراجعة صورة محلية (فحص فقط — بدون حفظ) -->
+            <div id="image-review" class="mt-6 bg-[#141724] border border-gray-800/70 rounded-xl p-4">
+                <div class="font-black text-gray-200 mb-1" style="font-size: 14px;">مراجعة لقطة Apple of Fortune (محلية فقط)</div>
+                <div class="text-gray-400 mb-3" style="font-size: 12px;">اختر PNG أو JPEG من جهازك للمعاينة وتحليل الشبكة داخل المتصفح. لا رفع للخادم ولا حفظ للنتائج في هذه الخطوة. محتوى المربعات المغلقة غير معروف دائماً.</div>
+                <div class="flex gap-2 mb-3">
+                    <label class="flex-1 bg-slate-800 hover:bg-slate-700 text-gray-200 text-xs font-bold px-3 py-2 rounded-lg text-center cursor-pointer">اختيار صورة<input id="board-image-input" type="file" accept="image/png,image/jpeg" class="hidden"></label>
+                    <button id="board-analyze-btn" class="flex-1 bg-cyan-900/50 hover:bg-cyan-900 text-cyan-200 text-xs font-bold px-3 py-2 rounded-lg border border-cyan-500/20">تحليل الشبكة محلياً</button>
+                    <button id="board-clear-btn" class="flex-1 bg-slate-800 hover:bg-slate-700 text-gray-200 text-xs font-bold px-3 py-2 rounded-lg">مسح</button>
+                </div>
+                <img id="board-preview" alt="معاينة محلية" class="hidden w-full rounded-lg border border-gray-700/60 mb-2">
+                <canvas id="board-canvas" class="w-full rounded-lg border border-gray-700/60 mb-2"></canvas>
+                <div id="board-status" class="text-xs text-gray-300 mb-2">اختر صورة PNG أو JPEG لمعاينتها وتحليل شبكتها محلياً.</div>
+                <div id="board-cells" class="text-xs text-gray-300 space-y-1 max-h-32 overflow-y-auto"></div>
+            </div>
+
+            <!-- لوحة الإحصائيات -->
+            <div id="stats-panel" class="mt-4 bg-[#101626] border border-cyan-500/20 rounded-xl p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="font-black text-gray-100" style="font-size: 14px;">لوحة الإحصائيات (نتائج فعلية مسجلة)</div>
+                    <button onclick="refreshStats()" class="bg-slate-800 hover:bg-slate-700 text-gray-200 text-xs font-bold px-3 py-2 rounded-lg">تحديث</button>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center mb-2">
+                    <div class="bg-[#141724] rounded-lg p-2"><div class="text-gray-400 text-xs">الجولات</div><div id="stat-total" class="font-black text-white">0</div></div>
+                    <div class="bg-[#141724] rounded-lg p-2"><div class="text-gray-400 text-xs">نسبة النجاح الفعلية</div><div id="stat-rate" class="font-black text-white">-</div></div>
+                    <div class="bg-[#141724] rounded-lg p-2"><div class="text-gray-400 text-xs">خط الأساس (افتراض)</div><div id="stat-baseline" class="font-black text-gray-300">20%</div></div>
+                </div>
+                <div id="stat-baseline-warn" class="text-xs text-amber-300/90 mb-2">خط الأساس 20% افتراض غير مؤكد (1 آمن من 5) — أكده من الطاولة الفعلية.</div>
+                <div id="stat-note" class="text-xs text-amber-300/90 mb-2">لا توجد بيانات بعد.</div>
+                <div id="stat-per-row" class="text-xs text-gray-300 space-y-1 max-h-32 overflow-y-auto"></div>
+                <div class="flex gap-2 mt-3">
+                    <button onclick="exportCSV()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-gray-200 text-xs font-bold px-3 py-2 rounded-lg">تصدير CSV</button>
+                    <label class="flex-1 bg-slate-800 hover:bg-slate-700 text-gray-200 text-xs font-bold px-3 py-2 rounded-lg text-center cursor-pointer">استيراد CSV<input id="import-file" type="file" accept=".csv" class="hidden" onchange="importCSV(event)"></label>
+                    <button onclick="refreshReport()" class="flex-1 bg-cyan-900/50 hover:bg-cyan-900 text-cyan-200 text-xs font-bold px-3 py-2 rounded-lg border border-cyan-500/20">تقرير مفصل</button>
+                </div>
+                <div id="report-box" class="text-xs text-gray-300 mt-2 space-y-1 max-h-40 overflow-y-auto"></div>
             </div>
         </div>
     </div>
@@ -219,6 +282,7 @@
                     document.getElementById('login-screen').classList.add('hidden');
                     document.getElementById('main-dashboard').classList.remove('hidden');
                     document.getElementById('display-user-id').innerText = "ID: " + currentUserId;
+                    try { refreshStats(); } catch(e) {}
                 }, 1200);
             }, 2500);
         }
@@ -268,9 +332,20 @@
             }
         }
 
+        let lastPrediction = null;
+        const LOCAL_KEY = "bottoffaha_rounds_v1";
+
+        function localExperimentalPredict(userId, row, sessionId) {
+            // بديل محلي مطابق لمنطق السيرفر — تجريبي فقط عند تعذر الاتصال
+            const s = `${userId}_${row}_${sessionId}`;
+            let h = 2166136261;
+            for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+            return (h % 5) + 1;
+        }
+
         async function analyzeNextRow() {
             if(currentActiveRow > 10) { 
-                alert("تهانينا! لقد قمت بفك تشفير ومحاكاة كافة صفوف اللعبة بنجاح."); 
+                alert("اكتمل عرض الصفوف التجريبية."); 
                 return; 
             }
 
@@ -278,7 +353,7 @@
             document.getElementById('analysis-loader').classList.remove('hidden');
 
             try {
-                const response = await fetch(`${SERVER_URL}/api/predict?row=${currentActiveRow}&user_id=${currentUserId}&session_id=${gameSessionId}`);
+                const response = await fetch(`${SERVER_URL}/api/predict?row=${currentActiveRow}&user_id=${encodeURIComponent(currentUserId)}&session_id=${gameSessionId}`);
                 const data = await response.json();
 
                 setTimeout(() => {
@@ -287,51 +362,148 @@
 
                     if(data.status === "success") {
                         revealPrediction(currentActiveRow, data.recommended_box);
+                        showLogger(currentActiveRow, data.recommended_box);
                         currentActiveRow++;
                         updateActiveRowVisuals();
                     }
-                }, 1400);
+                }, 800);
 
             } catch (error) {
-                // تفعيل طريقة "التوزيع الاحتمالي الموزون والموقوت" الأقوى كبديل أمان
+                // بديل محلي تجريبي فقط — لا يدعي أي تفوق
                 setTimeout(() => {
                     document.getElementById('analysis-loader').classList.add('hidden');
                     document.getElementById('analyze-btn').disabled = false;
-                    
-                    const now = new Date();
-                    const min = now.getMinutes(); 
-                    const hr = now.getHours();
-                    
-                    let seedString = "";
-                    
-                    // تقسيم مستويات التحليل إلى 3 مراحل ذكية تحاكي جدران حماية حقيقية متغيرة
-                    if (currentActiveRow <= 4) {
-                        // المرحلة 1: منطقة الأمان العالية - نمط مستقر يعتمد على الدقيقة الحالية والـ ID
-                        seedString = `SAFE_${currentUserId}_${currentActiveRow}_${gameSessionId}_${min}`;
-                    } else if (currentActiveRow <= 7) {
-                        // المرحلة 2: التمويه الذكي المتوسط - يتم تغيير البذرة بخلط الساعة والدقائق لمنع التكرار
-                        seedString = `MID_${currentUserId}_${currentActiveRow}_${gameSessionId}_${min + hr}`;
-                    } else {
-                        // المرحلة 3: كسر الأنماط المتقدم - خوارزمية سريعة التغير لتوحي بوجود جدار حماية ديناميكي في اللعبة
-                        const speedFactor = Math.floor(now.getSeconds() / 15); // يتغير المسار كل 15 ثانية في الصفوف الأخيرة!
-                        seedString = `HARD_${currentUserId}_${currentActiveRow}_${gameSessionId}_${min}_${speedFactor}`;
-                    }
-                    
-                    // توليد الهاش الرقمي المشفر الفريد (32-bit Integer)
-                    let hashValue = 0;
-                    for (let i = 0; i < seedString.length; i++) {
-                        hashValue = (hashValue << 5) - hashValue + seedString.charCodeAt(i);
-                        hashValue |= 0; 
-                    }
-                    
-                    // استخراج المربع النهائي الموزون رياضياً بين 1 و 5
-                    const strategicBox = Math.abs(hashValue % 5) + 1;
-                    
+                    const strategicBox = localExperimentalPredict(currentUserId, currentActiveRow, gameSessionId);
                     revealPrediction(currentActiveRow, strategicBox);
+                    showLogger(currentActiveRow, strategicBox);
                     currentActiveRow++;
                     updateActiveRowVisuals();
-                }, 1400);
+                }, 800);
             }
+        }
+
+        function showLogger(row, pred) {
+            // معرف فريد وتوقيت التوقع قبل اللعب — لا يحتسب نجاح بدونه
+            const rid = (crypto.randomUUID ? crypto.randomUUID().replace(/-/g, "").slice(0, 12) : String(Date.now()) + String(Math.floor(Math.random()*1e6)));
+            lastPrediction = { row, predicted_box: pred, round_id: rid, predicted_at: Math.floor(Date.now()/1000) };
+            document.getElementById('round-logger').classList.remove('hidden');
+            document.getElementById('log-row').innerText = row;
+            document.getElementById('log-pred').innerText = pred;
+            document.getElementById('log-msg').innerText = "سجل كل جولة متتالية. بعد لعب الصف، أدخل الفعلي وإعدادات الطاولة إن علمتها ثم احفظ.";
+        }
+
+        function getLocalRounds() {
+            try { return JSON.parse(localStorage.getItem(LOCAL_KEY) || "[]"); }
+            catch(e) { return []; }
+        }
+
+        async function saveActual() {
+            const v = parseInt(document.getElementById('actual-input').value, 10);
+            if(!lastPrediction) { document.getElementById('log-msg').innerText = "ولّد اقتراحاً تجريبياً أولاً."; return; }
+            if(!(v >= 1 && v <= 5)) { document.getElementById('log-msg').innerText = "أدخل رقماً من 1 إلى 5."; return; }
+            const nbRaw = document.getElementById('nb-input').value.trim();
+            const nsRaw = document.getElementById('ns-input').value.trim();
+            const lvRaw = document.getElementById('level-input').value.trim();
+            const entry = {
+                round_id: lastPrediction.round_id,
+                user_id: currentUserId, session_id: gameSessionId,
+                row: lastPrediction.row, predicted_box: lastPrediction.predicted_box,
+                actual_box: v, predicted_at: lastPrediction.predicted_at,
+                ts: Math.floor(Date.now()/1000),
+                num_boxes: nbRaw === "" ? null : parseInt(nbRaw, 10),
+                num_safe: nsRaw === "" ? null : parseInt(nsRaw, 10),
+                level: lvRaw === "" ? "unknown" : lvRaw
+            };
+            // حفظ محلي دائماً (موثق بالتوقيت)
+            const arr = getLocalRounds(); arr.push({...entry, hit: entry.predicted_box === entry.actual_box, prediction_verified: true, hit_verified: entry.predicted_box === entry.actual_box});
+            localStorage.setItem(LOCAL_KEY, JSON.stringify(arr));
+            // محاولة إرسال للسيرفر إن كان يعمل
+            try {
+                const r = await fetch(`${SERVER_URL}/api/rounds`, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(entry)});
+                const d = await r.json();
+                document.getElementById('log-msg').innerText = d.status === "success" ? `تم الحفظ كتوقع موثق ✔ (توقع ${entry.predicted_box} / فعلي ${v}) — سجل الجولة التالية أيضاً.` : ("تعذر حفظ السيرفر، حفظ محلي فقط: " + (d.message||""));
+            } catch(e) {
+                document.getElementById('log-msg').innerText = `حفظ محلي فقط (السيرفر متوقف) ✔ (توقع ${entry.predicted_box} / فعلي ${v}) — سجل الجولة التالية أيضاً.`;
+            }
+            document.getElementById('actual-input').value = "";
+            lastPrediction = null;
+            refreshStats();
+        }
+
+        function renderStats(total, hitRate, perRow, note, baselineInfo) {
+            document.getElementById('stat-total').innerText = total;
+            document.getElementById('stat-rate').innerText = (hitRate === null || hitRate === undefined) ? "-" : (hitRate*100).toFixed(1) + "%";
+            document.getElementById('stat-note').innerText = note || "";
+            if(baselineInfo) {
+                document.getElementById('stat-baseline').innerText = (baselineInfo.baseline_p*100).toFixed(0) + "%";
+                document.getElementById('stat-baseline-warn').innerText = baselineInfo.baseline_confirmed ? ("خط الأساس مؤكد: " + baselineInfo.source) : ("خط الأساس افتراض غير مؤكد (" + baselineInfo.source + ") — أكده من الطاولة الفعلية.");
+            }
+            const box = document.getElementById('stat-per-row'); box.innerHTML = "";
+            const keys = Object.keys(perRow||{}).sort((a,b)=>a-b);
+            if(keys.length === 0) { box.innerHTML = "<div>لا توجد نتائج صفوف بعد.</div>"; return; }
+            keys.forEach(k => {
+                const d = perRow[k]; const r = d.total ? (d.hits/d.total*100).toFixed(1)+"%" : "-";
+                box.innerHTML += `<div>صف ${k}: ${d.hits}/${d.total} (${r})</div>`;
+            });
+        }
+
+        async function refreshStats() {
+            // أولاً من التخزين المحلي للعرض الفوري
+            const local = getLocalRounds();
+            if(local.length) {
+                const tot = local.length, hits = local.filter(x=>x.hit).length;
+                const per = {};
+                local.forEach(x => { const k = String(x.row); per[k] = per[k]||{total:0,hits:0}; per[k].total++; if(x.hit) per[k].hits++; });
+                const note = tot < 30 ? `عينة صغيرة جداً (n=${tot}) — غير دالة إحصائياً.` : `عينة محدودة (n=${tot}) — للمقارنة مع خط الأساس (افتراض 20%).`;
+                renderStats(tot, tot?hits/tot:null, per, note + " (عرض محلي)", {baseline_p: 0.2, baseline_confirmed: false, source: "assumption 1/5"});
+            }
+            // ثم من السيرفر إن توفر
+            try {
+                const r = await fetch(`${SERVER_URL}/api/stats`);
+                const d = await r.json();
+                if(d.status === "success") {
+                    const s = d.stats;
+                    renderStats(s.total, s.hit_rate, s.per_row, s.sample_note + " (السيرفر)", s);
+                }
+            } catch(e) { /* السيرفر متوقف — نكتفي بالمحلي */ }
+        }
+
+        async function refreshReport() {
+            const box = document.getElementById('report-box');
+            box.innerHTML = "جاري تحميل التقرير...";
+            try {
+                const r = await fetch(`${SERVER_URL}/api/report`);
+                const d = await r.json();
+                if(d.status !== "success") { box.innerHTML = "تعذر تحميل التقرير."; return; }
+                const rep = d.report;
+                let html = `<div>الإجمالي: ${rep.hits}/${rep.total} (${rep.hit_rate===null?"-":(rep.hit_rate*100).toFixed(1)+"%"}) — الموثق ${rep.verified_hits}/${rep.verified_total} — خط الأساس ${(rep.baseline_p*100).toFixed(0)}% (${rep.baseline_confirmed?"مؤكد":"افتراض غير مؤكد"})</div>`;
+                html += `<div>p=${rep.overall.p_value_ge.toFixed(4)} (مصحح Bonferroni alpha=${rep.alpha_corrected_bonferroni.toFixed(4)} لـ ${rep.m_tests} صفوف) — ${rep.overall.verdict}</div>`;
+                Object.keys(rep.per_row).sort((a,b)=>a-b).forEach(k => {
+                    const pr = rep.per_row[k];
+                    const rate = pr.hit_rate===null?"-":(pr.hit_rate*100).toFixed(1)+"%";
+                    const ci = (pr.ci_low===null)?"-":`${(pr.ci_low*100).toFixed(1)}%-${(pr.ci_high*100).toFixed(1)}%`;
+                    html += `<div>صف ${k}: ${pr.hits}/${pr.attempts} (${rate}) موثق ${pr.verified_hits}/${pr.verified_attempts} CI95% ${ci} — ${pr.note}</div>`;
+                });
+                html += `<div class="text-amber-300/90">${rep.validity_conditions}</div>`;
+                html += `<div class="text-amber-300/90">${rep.limits}</div>`;
+                box.innerHTML = html;
+            } catch(e) { box.innerHTML = "السيرفر متوقف — شغل app.py لعرض التقرير المفصل."; }
+        }
+
+        function exportCSV() {
+            window.open(`${SERVER_URL}/api/export?format=csv`, "_blank");
+        }
+
+        async function importCSV(ev) {
+            const f = ev.target.files[0]; if(!f) return;
+            const text = await f.text();
+            try {
+                const r = await fetch(`${SERVER_URL}/api/import`, {method: "POST", headers: {"Content-Type": "text/csv"}, body: text});
+                const d = await r.json();
+                alert(d.status === "success" ? `تم الاستيراد: ${d.imported} (متجاهل ${d.skipped})` : ("فشل الاستيراد: " + (d.message||"")));
+                refreshStats();
+            } catch(e) { alert("تعذر الاتصال بالسيرفر — شغل app.py أولاً."); }
+            ev.target.value = "";
         }
 
         function revealPrediction(row, boxIndex) {
@@ -352,5 +524,6 @@
             buildMatrix();
         }
     </script>
+    <script src="image_review.js"></script>
 </body>
 </html>

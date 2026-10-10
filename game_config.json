@@ -1,0 +1,7 @@
+{
+  "_comment": "UNCONFIRMED assumption — confirm num_safe_per_row from the actual observed Apple of Fortune table before any claim. Example: 1 safe of 5 => baseline 0.2, 4 safe of 5 => baseline 0.8.",
+  "num_boxes": 5,
+  "num_safe_per_row": 1,
+  "confirmed": false,
+  "note": "Default 1-safe-of-5 assumption. If your table shows different safe count, update num_safe_per_row and set confirmed=true only after observing real rounds."
+}
