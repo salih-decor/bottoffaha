@@ -1,0 +1,12 @@
+# local backups and caches — never push
+backup_*/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+# recorded game data stays local
+data/rounds.jsonl
+data/*.csv
+# OS noise
+.DS_Store
+Thumbs.db
